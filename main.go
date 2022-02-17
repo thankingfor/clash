@@ -52,6 +52,7 @@ func main() {
 		return
 	}
 
+	// 指定homeDir和configFile
 	if homeDir != "" {
 		if !filepath.IsAbs(homeDir) {
 			currentDir, _ := os.Getwd()
@@ -71,10 +72,12 @@ func main() {
 		C.SetConfig(configFile)
 	}
 
+	// 初始化工作目录下的默认配置文件 和 mmdb这个ip库
 	if err := config.Init(C.Path.HomeDir()); err != nil {
 		log.Fatalln("Initial configuration directory error: %s", err.Error())
 	}
 
+	// 测试配置是否正确, 测试结束 程序结束
 	if testConfig {
 		if _, err := executor.Parse(); err != nil {
 			log.Errorln(err.Error())
@@ -85,6 +88,7 @@ func main() {
 		return
 	}
 
+	// 初始化并且根据参数生成全局配置对象
 	var options []hub.Option
 	if flagset["ext-ui"] {
 		options = append(options, hub.WithExternalUI(externalUI))

@@ -128,8 +128,10 @@ type RawConfig struct {
 	TProxyPort         int          `yaml:"tproxy-port"`
 	MixedPort          int          `yaml:"mixed-port"`
 	Authentication     []string     `yaml:"authentication"`
+	// 是否允许局域网(Lan)连接
 	AllowLan           bool         `yaml:"allow-lan"`
 	BindAddress        string       `yaml:"bind-address"`
+	// 代理模式: Global  Rule  Direct
 	Mode               T.TunnelMode `yaml:"mode"`
 	LogLevel           log.LogLevel `yaml:"log-level"`
 	IPv6               bool         `yaml:"ipv6"`
